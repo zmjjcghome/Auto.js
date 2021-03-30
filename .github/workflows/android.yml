@@ -22,7 +22,7 @@ jobs:
 #        path: app/build/outputs/apk/common/release/app-common-armeabi-v7a-release-unsigned.apk
 
     - name: Upload firmware to cowtransfer
-      if: env.UPLOAD_COWTRANSFER == 'true' || contains(github.event.action, 'ssh')
+#      if: env.UPLOAD_COWTRANSFER == 'true' || contains(github.event.action, 'ssh')
       run: |
         ls -l
         cd app/build/outputs/apk/common/release
@@ -30,7 +30,7 @@ jobs:
         ./transfer cow --block 2621440 -s -p 64 --no-progress app-common-armeabi-v7a-release-unsigned.apk 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
     - name: Upload firmware to WeTransfer
-      if: env.UPLOAD_WETRANSFER == 'true' || contains(github.event.action, 'ssh')
+#      if: env.UPLOAD_WETRANSFER == 'true' || contains(github.event.action, 'ssh')
       run: |
         ls -l
         cd app/build/outputs/apk/common/release
